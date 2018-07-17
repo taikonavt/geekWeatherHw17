@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 /**
  * Created by shkryaba on 24/06/2018.
@@ -26,11 +28,14 @@ import java.util.ArrayList;
 public class CreateActionFragment extends BaseFragment {
 
     //объявление переменных
-    private EditText editTextCountry;
+    private TextInputEditText editTextCountry;
     private RecyclerView recyclerView;
     OnHeadlineSelectedListener mCallback;
     private LinearLayout linearLayout;
     private ArrayList<String> cityList;
+
+    Pattern checkNum = Pattern.compile("\\D+");
+    Pattern checkSym = Pattern.compile("\\w+");
 
     public interface OnHeadlineSelectedListener {
         public void onArticleSelected(ArrayList<String> position);
@@ -42,7 +47,7 @@ public class CreateActionFragment extends BaseFragment {
         Toast.makeText(getContext(), "onAttachAction", Toast.LENGTH_SHORT).show();
 
         try {
-            mCallback = (OnHeadlineSelectedListener) getBaseActivity().getAnotherFragment();
+            mCallback = (OnHeadlineSelectedListener) getBaseActivity();
         } catch (ClassCastException e) {
             throw new ClassCastException(getBaseActivity().getAnotherFragment().toString()
                     + " must implement OnHeadlineSelectedListener");
@@ -75,7 +80,7 @@ public class CreateActionFragment extends BaseFragment {
         recyclerView.setAdapter(customAdapter);
 
         //инициализация edittext и листенер на ключи при взаимодействии с ним, когда мы нашимаем enter у нас опускается клавиатура и запускается WeatherFragment
-        editTextCountry = (EditText) view.findViewById(R.id.et_country);
+        editTextCountry = (TextInputEditText) view.findViewById(R.id.tiet_country);
 
         editTextCountry.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -84,16 +89,19 @@ public class CreateActionFragment extends BaseFragment {
                     InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     String country = editTextCountry.getText().toString().trim();
-                    ArrayList<String> arrayList = new ArrayList<>();
-                    arrayList.add(country);
-                    mCallback.onArticleSelected(arrayList);
-                    return true;
+                    if (checkNum.matcher(country).matches() && checkSym.matcher(country).matches()) {
+                        editTextCountry.setError(null);
+                        ArrayList<String> arrayList = new ArrayList<>();
+                        arrayList.add(country);
+                        mCallback.onArticleSelected(arrayList);
+                        return true;
+                    } else {
+                        editTextCountry.setError("Wrong city");
+                    }
                 }
                 return false;
             }
         });
-
-
     }
 
     private void initCountryList() {

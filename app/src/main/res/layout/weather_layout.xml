@@ -8,15 +8,15 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"
-            android:background="@color/baseFonColor">
+            >
 
             <ImageView
                 android:id="@+id/ivWeather"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/rain_3x" />
+                android:background="@drawable/rain_3x"
+                />
 
             <TextView
                 android:id="@+id/tv_country"
@@ -25,7 +25,7 @@
                 android:layout_below="@+id/ivWeather"
                 android:layout_centerHorizontal="true"
                 android:text="@string/other"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="20sp"
                 tools:text="@string/hello_blank_fragment" />
 
@@ -37,7 +37,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="+18"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="80sp" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:layout_below="@+id/bigTemp"
                 android:layout_centerHorizontal="true"
                 android:text=""
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="20sp"
                 tools:text="@string/hello_blank_fragment" />
 
@@ -59,7 +59,7 @@
                 android:layout_centerHorizontal="true"
                 android:text=""
                 android:layout_marginBottom="?attr/actionBarSize"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="20sp"
                 tools:text="@string/hello_blank_fragment" />
 

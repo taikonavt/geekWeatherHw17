@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class WeatherFragment extends BaseFragment implements CreateActionFragment.OnHeadlineSelectedListener {
+public class WeatherFragment extends BaseFragment {
 
     private static final String ARG_COUNTRY = "ARG_COUNTRY";
     private String country;
@@ -81,10 +81,9 @@ public class WeatherFragment extends BaseFragment implements CreateActionFragmen
         void onTvTempClick();
     }
 
-    @Override
-    public void onArticleSelected(ArrayList<String> citiesList) {
+    public void setCountry(String country) {
+        this.country = country;
         textView.setVisibility(View.VISIBLE);
-        String cities = citiesList.toString();
-        textView.setText(cities.substring(cities.indexOf("[") + 1, cities.indexOf("]")));
+        textView.setText(country);
     }
 }

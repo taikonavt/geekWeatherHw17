@@ -3,6 +3,7 @@ package com.geekbrains.weather;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,14 +12,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class BaseActivity extends AppCompatActivity
         implements BaseView.View, BaseFragment.Callback, NavigationView.OnNavigationItemSelectedListener,
-WeatherFragment.OnTvTempClickListener{
+WeatherFragment.OnTvTempClickListener, CreateActionFragment.OnHeadlineSelectedListener{
 
     //инициализация переменных
     private FloatingActionButton fab;
@@ -202,5 +206,18 @@ WeatherFragment.OnTvTempClickListener{
 
     private void startTempHistoryFragment(){
         addFragment(TempHistoryFragment.newInstance());
+    }
+
+    @Override
+    public void onArticleSelected(ArrayList<String> position) {
+        String cities = position.toString();
+        contry = cities.substring(cities.indexOf("[") + 1, cities.indexOf("]"));
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbarLayout);
+        collapsingToolbarLayout.setTitle(contry);
+//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+//            WeatherFragment fragment =
+//                    (WeatherFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
+//            fragment.setCountry(contry);
+//        }
     }
 }

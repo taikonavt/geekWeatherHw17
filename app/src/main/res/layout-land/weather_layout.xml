@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:background="@color/baseFonColor">
+        >
 
         <ImageView
             android:id="@+id/ivWeather"
@@ -26,7 +25,7 @@
             android:layout_below="@+id/ivWeather"
             android:layout_centerHorizontal="true"
             android:text="@string/other"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
             tools:text="@string/hello_blank_fragment" />
 
@@ -38,7 +37,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="+18"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="40sp" />
 
         <TextView
@@ -48,7 +47,7 @@
             android:layout_below="@+id/bigTemp"
             android:layout_centerHorizontal="true"
             android:text=""
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
             tools:text="@string/hello_blank_fragment" />
 
@@ -59,7 +58,7 @@
             android:layout_below="@+id/tv_pressure"
             android:layout_centerHorizontal="true"
             android:text=""
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
             tools:text="@string/hello_blank_fragment" />
 
